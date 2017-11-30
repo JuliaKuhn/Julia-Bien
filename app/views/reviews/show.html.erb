@@ -3,16 +3,16 @@
 <h1><%= @review.title %></h1>
 
 <div class="score">
-  <% @review.score %> /10
+  <%= @review.score %> /10
 </div>
 
 
 <div class="body">
-  <%= simple_formate @review.body %>
+  <%= simple_format @review.body %>
 </div>
 
 
  <div class="actions">
    <%= link_to "Edit this review", edit_review_path(@review) %>
-   <%= link_to "Delete this review", review_path(@review), method: :delete, data: confirm: {"are your Sure??"}%>
+   <%= link_to "Delete this review", review_path(@review), method: :delete, data: { confirm: "are your Sure??" } %>
  </div>

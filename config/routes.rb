@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-resources :reviews
-
-root "reviews#index"
-
+  resources :reviews
+  root "reviews#index"
 end
