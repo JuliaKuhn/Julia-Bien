@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Biel the best restaurant</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+
+    <header>
+      <h1><%= link_to root_path do%>
+
+<%= image_tag "Bildschirmfoto 2017-11-30 um 11.14.24.png" %>
+<% end %>
+
+      </h1>
+      <h2>the best Restaruant in Biel</h2>
+<nav>
+
+
+   <%= link_to "Add a review", new_review_path %>
+</nav>
+
+    </header>
+
+
+    <%= yield %>
+
+<footer> Julia Copright 2017 Biel</footer>
+
+
+  </body>
+</html>
