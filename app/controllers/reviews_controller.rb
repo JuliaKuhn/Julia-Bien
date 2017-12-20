@@ -11,11 +11,16 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(form_params)
-    @review.save
-    redirect_to root_path
+
+if @review.save
+  redirect_to root_path
+else
+  render "new"
+end
+
   end
 
-  def show  
+  def show
     @review = Review.find(params[:id])
   end
 
@@ -31,8 +36,12 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    @review = update(form_params)
+
+if @review.update(form_params)
     redirect_to review_path(@review)
+  else
+render "edit"
+  end
   end
 
   def form_params
