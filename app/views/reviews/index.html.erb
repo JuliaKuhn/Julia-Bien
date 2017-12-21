@@ -20,8 +20,7 @@
   <input type="text" name="location"
   placeholder="Search location ..." value="<%= @location %>">
 <input type="hidden" name="price" value="<%= @price %>">
-<input type="hidden" name="cuisine" value="<%= @cuisine %>>
-
+<input type="hidden" name="cuisine" value="<%= @cuisine %>">
 </form>
 
 </nav>
@@ -32,7 +31,7 @@
   <%= link_to review_path(review) do %>
 <h2><%= review.title %></h2>
 <p><%= review.cuisine %>
-  <%= pluralize review.comments.count "comment" %>
+  <%= pluralize review.comments.count, "comment" %>
 
 </p>
   <% end %>
