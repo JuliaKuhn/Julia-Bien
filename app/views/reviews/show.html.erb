@@ -26,6 +26,15 @@
 </div>
 <% end %>
 
+<h3>Add a comment</h3>
+<%= simple_form_for [@review, Comment.new] do |f| %>
+
+<%= f.input :body %>
+<%= f.button :submit, "add comment" %>
+
+<% end %>
+
+
 
 
 <div class="body">
@@ -37,3 +46,18 @@
    <%= link_to "Edit this review", edit_review_path(@review) %>
    <%= link_to "Delete this review", review_path(@review), method: :delete, data: { confirm: "are your Sure??" } %>
  </div>
+
+
+  <h3>Comments</h3>
+  <% @review.comments.order("created_at desc").each do |comment| %>
+  <div class="comment">
+<%= simple_format comment.body %>
+<p class="posted">Posted <%= time_ago_in_word comment.created_at %>ago</p>
+  </div>
+<% end %>
+
+  <h3> Add a comment</h3>
+  <%= simple_form_for [@review, Comment.new] do |f| %>
+  <%= f.input :body %>
+    <%= f.button :submit, "Add coment" %>
+    <% end %>

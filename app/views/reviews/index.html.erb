@@ -2,18 +2,18 @@
 <% content_for :page_title, "Homepage" %>
 
 <nav class="filters">
-  <%= link_to "All Prices", root_path %>
+  <%= active_link_to "All Prices", root_path, active: { price: nil, cuisine: nil, location: nil}  %>
 
   <div>
-  <%= link_to "10 CHF", root_path(price: 10, cuisine: @cuisine, location: @location) %>
-  <%= link_to "50 CHF", root_path(price: 50, cuisine: @cuisine, location: @location) %>
-  <%= link_to "100 CHF", root_path(price: 100, cuisine: @cuisine, location: @location) %>
+  <%= active_link_to "10 CHF", root_path(price: 10, cuisine: @cuisine, location: @location), active: { price: 10}  %>
+  <%= active_link_to "50 CHF", root_path(price: 50, cuisine: @cuisine, location: @location), active: { price: 50} %>
+  <%= active_link_to "100 CHF", root_path(price: 100, cuisine: @cuisine, location: @location), active: { price: 100} %>
 </div>
 
   <div>
-  <%= link_to "Indian", root_path(cuisine: "Indian", price: @price, location: @location) %>
-<%= link_to "Mexican", root_path(cuisine: "Maxican", price: @price, location: @location) %>
-<%= link_to "Swiss", root_path(cuisine: "Swiss", price: @price, location: @location) %>
+  <%= active_link_to "Indian", root_path(cuisine: "Indian", price: @price, location: @location), active: { cuisine: "indian"} %>
+<%= active_link_to "Mexican", root_path(cuisine: "Maxican", price: @price, location: @location), active: { cuisine: "Maxican"} %>
+<%= active_link_to "Swiss", root_path(cuisine: "Swiss", price: @price, location: @location), active: { cuisine: "Swiss"} %>
 </div>
 
 <from action="/">
@@ -29,7 +29,13 @@
 <% @reviews.each do |review| %>
 
 <div class="review">
-  <%= link_to review.title, review_path(review) %>
+  <%= link_to review_path(review) do %>
+<h2><%= review.title %></h2>
+<p><%= review.cuisine %>
+  <%= pluralize review.comments.count "comment" %>
+
+</p>
+  <% end %>
 
 </div>
 
