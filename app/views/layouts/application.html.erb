@@ -12,17 +12,30 @@
 
 
     <header>
-      <h1><%= link_to root_path do%>
+      <nav>
+      <h1>
+        <%= link_to root_path do%>
 
 <%= image_tag "Bildschirmfoto 2017-11-30 um 11.14.24.png" %>
 <% end %>
-
       </h1>
-      <h2>the best Restaruant in Biel</h2>
+    </nav>
 <nav>
+<% if is_logged_in? %>
+
+<%= @current_user.username %>
 
 
-   <%= link_to "Add a review", new_review_path %>
+ <%= link_to "Add a review", new_review_path %>
+ <%= link_to "Log out", session_path, method: :delete %>
+
+<% else %>
+<%= link_to "Sign up", new_user_path %>
+<%= link_to "Log in", new_session_path %>
+
+<% end %>
+
+
 </nav>
 
     </header>
