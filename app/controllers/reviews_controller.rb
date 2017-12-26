@@ -3,28 +3,24 @@ class ReviewsController < ApplicationController
   before_action :check_login, except: [:index, :show]
 
   def index
-@price = params[:price]
-@cuisine = params[:cuisine]
-@cuisine = params[:location]
+    @price = params[:price]
+    @cuisine = params[:cuisine]
+    @cuisine = params[:location]
 
+    @reviews = Review.all
+    
+    if @price.present?
+      @reviews = @reviews.where(price: @price)
+    end
 
-@reviews = Review.all
-if @price.present?
-  @reviews = @reviews.where(price: @price)
-end
+    if @cuisine.present?
+      @reviews = @reviews.where(cuisine: @cuisine)
+    end
 
-if @cuisine.present?
-  @reviews = @reviews.where(cuisine: @cuisine)
-end
-
-
-
-
-if @location.present?
-  @reviews = @reviews.near(@location)
-end
-
-end
+    if @location.present?
+      @reviews = @reviews.near(@location)
+    end
+  end
 
   def new
     @review = Review.new
@@ -35,11 +31,11 @@ end
 
     @review.user = @current_user
 
-if @review.save
-  redirect_to root_path
-else
-  render "new"
-end
+    if @review.save
+      redirect_to root_path
+    else
+      render "new"
+    end
 
   end
 
@@ -49,8 +45,11 @@ end
 
   def destroy
     @review = Review.find(params[:id])
+    
     if @review.user == @current_user
-    @review.destroy
+      @review.destroy
+    end
+    
     redirect_to root_path
   end
 
@@ -58,27 +57,26 @@ end
     @review = Review.find(params[:id])
     if @review.user != @current_user
       redirect_to root_path
+    end
   end
 
   def update
     @review = Review.find(params[:id])
 
-        if @review.user != @current_user
-          redirect_to root_path
-        else
-
-          if @review.update(form_params)
-              redirect_to review_path(@review)
-            else
-          render "edit"
-            end
-        end
-
-
+    if @review.user != @current_user
+      redirect_to root_path
+    else
+      if @review.update(form_params)
+        redirect_to review_path(@review)
+      else
+        render "edit"
+      end
+    end
+  end
 
   def form_params
     params.require(:review).permit(:title, :restaurant, :body,
       :telefone, :ambiance, :score, :cuisine, :price, :address)
-end
+  end
 
 end
