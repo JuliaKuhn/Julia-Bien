@@ -45,6 +45,16 @@ gem "active_link_to"
 
 gem "profanity_filter"
 
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
+gem "fog-aws"
+
+gem 'activeadmin'
+gem 'devise'
+gem 'cancan'
+gem 'draper'
+gem 'pundit'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

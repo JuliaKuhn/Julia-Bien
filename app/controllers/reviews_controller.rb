@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
-
-  before_action :check_login, except: [:index, :show]
+  before_action :check_login, except: %i[index show]
 
   def index
     @price = params[:price]
@@ -8,18 +7,12 @@ class ReviewsController < ApplicationController
     @cuisine = params[:location]
 
     @reviews = Review.all
-    
-    if @price.present?
-      @reviews = @reviews.where(price: @price)
-    end
 
-    if @cuisine.present?
-      @reviews = @reviews.where(cuisine: @cuisine)
-    end
+    @reviews = @reviews.where(price: @price) if @price.present?
 
-    if @location.present?
-      @reviews = @reviews.near(@location)
-    end
+    @reviews = @reviews.where(cuisine: @cuisine) if @cuisine.present?
+
+    @reviews = @reviews.near(@location) if @location.present?
   end
 
   def new
@@ -34,9 +27,8 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to root_path
     else
-      render "new"
+      render 'new'
     end
-
   end
 
   def show
@@ -45,11 +37,9 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
-    
-    if @review.user == @current_user
-      @review.destroy
-    end
-    
+
+    @review.destroy if @review.user == @current_user
+
     redirect_to root_path
   end
 
@@ -57,6 +47,8 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     if @review.user != @current_user
       redirect_to root_path
+    elsif @review.created_at < 1.hour.ago
+      redirect_to review_path(@review)
     end
   end
 
@@ -69,14 +61,13 @@ class ReviewsController < ApplicationController
       if @review.update(form_params)
         redirect_to review_path(@review)
       else
-        render "edit"
+        render 'edit'
       end
     end
   end
 
   def form_params
     params.require(:review).permit(:title, :restaurant, :body,
-      :telefone, :ambiance, :score, :cuisine, :price, :address)
+                                   :telefone, :ambiance, :score, :cuisine, :price, :address, :photo)
   end
-
 end

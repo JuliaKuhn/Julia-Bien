@@ -1,5 +1,7 @@
 <% content_for :page_title, @review.title %>
 
+<%= image_tag @review.photo.medium %>
+
 <h1><%= @review.title %></h1>
 <h2><%= @review.restaurant %></h2>
 
@@ -58,6 +60,7 @@
 
 <% if @review.user == @current_user %>
   <div class="actions">
+    <% if @review.created_at > 1.hour.ago %>
     <%= link_to "Edit this review", edit_review_path(@review) %>
     <%= link_to "Delete this review", review_path(@review), method: :delete, data: { confirm: "are your Sure??" } %>
   </div>
@@ -75,9 +78,9 @@
         <%= link_to comment.user.username, user_path(comment.user) %>
       <% else %>
         anonymous
-      <% end %>  
+      <% end %>
     </p>
-    
+
     <p class="posted">Posted <%= time_ago_in_words comment.created_at %> ago</p>
   </div>
 <% end %>
@@ -87,4 +90,5 @@
 <%= simple_form_for [@review, Comment.new] do |f| %>
   <%= f.input :body %>
   <%= f.button :submit, "Add coment" %>
+<% end %>
 <% end %>
