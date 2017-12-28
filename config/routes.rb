@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resource :session
 
   get 'about', to: 'pages#about'
-  get 'about', to: 'pages#terms'
+  get 'terms', to: 'pages#terms'
 
   root 'pages#homepage'
 end

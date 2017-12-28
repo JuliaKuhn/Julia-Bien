@@ -1,5 +1,5 @@
 class Page < ApplicationRecord
   validates :url, uniqueness: true
 
-  mount_uploader :image, ContentImageuploader
+  mount_uploader :image, ContentImageUploader
 end
