@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   get 'about', to: 'pages#terms'
 
-  root 'pages#homepage'
+  root 'pages#home'
 end
