@@ -3,7 +3,7 @@ ActiveAdmin.register Review do
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   permit_params :title, :restaurant, :body,
-                :telefone, :ambiance, :score, :cuisine, :price, :address, :photo, :user_id
+                :telefone, :ambiance, :score, :cuisine, :price, :address, :photo, :user_id, :is_featured
   #
   # or
   #

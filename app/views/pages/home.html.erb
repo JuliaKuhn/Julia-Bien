@@ -6,13 +6,7 @@
 
 <h2>hightly rated reviews</h2>
 
-<% @hightly_rated_reviews.each do |review| %>
-<p>
-    <%= link_to review.title, review_path(review) %> (<%= review.score %>/10, rated by
-    <% if review.user.present? %>
-    <%= review.user.username %>
-    <% else %>
-    anonymouse
-    <% end %>)
-</p>
-<% end %>
+<%= render partial: "review", collection: @hightly_rated_reviews %>
+
+<h2>Bien featured reviews</h2>
+<%= render partial: "review", collection: @featured_reviews %>
