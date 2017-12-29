@@ -2,7 +2,6 @@ $green: #3BC8AA;
 $orange: #FF551A;
 $black: #1E1E1E;
 $lightyellow: #ffeccf;
-
 $titleFont: "PT Serif";
 $bodyFont: "Work Sans";
 
@@ -19,12 +18,19 @@ body {
   padding-left: 20px;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-family: $titleFont;
 }
 
-header, main, footer, {
-  padding: 20px 30px 20px 30px;
+,
+footer,
+header,
+main {
+  padding: 20px 30px;
 }
 
 a {
@@ -59,7 +65,8 @@ label {
   display: block;
 }
 
-input, textarea {
+input,
+textarea {
   font-size: 18px;
   min-width: 400px;
   border: 1px solid #cccccc;
@@ -77,13 +84,11 @@ textarea {
   min-height: 400px;
 }
 
-
 nav.filters {
-  margin: 0 0 20px 0;
-  padding: 0 0 10px 0;
+  margin: 0 0 20px;
+  padding: 0 0 10px;
   font-size: 14px;
   border-bottom: 2px solid $lightyellow;
-
   display: flex;
   align-items: center;
 
@@ -93,11 +98,12 @@ nav.filters {
     color: $black;
 
     &.active {
-    color: $green;
-      }
+      color: $green;
+    }
   }
 
-  div, form {
+  div,
+  form {
     margin: 0 0 0 25px;
   }
 
@@ -106,4 +112,9 @@ nav.filters {
     font-size: 14px;
     padding: 4px 5px;
   }
+}
+
+.success {
+  background: $green;
+  color:padding:
 }

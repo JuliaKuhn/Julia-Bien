@@ -25,6 +25,7 @@ class ReviewsController < ApplicationController
     @review.user = @current_user
 
     if @review.save
+      flash[:succes] = 'Your review was posted!'
       redirect_to root_path
     else
       render 'new'
